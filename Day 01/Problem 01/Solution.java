@@ -11,29 +11,13 @@ public class Solution {
 
 	static int removeElement(int[] nums, int val) {
 		int count = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (val != nums[i]) {
-                count = count + 1;
-				// int temp = nums[i];
-				// for (int j = nums.length - 1; j > i; j--){
-				// 	if(temp != nums[j]) {
-				// 		nums[i] = nums[j];
-				// 		nums[j] = temp;
-				// 	}
-				// }
-            }
-        }
-		
-			int[] newArr = new int[count];
-			int pos = 0;
-			for (int i = 0; i < nums.length; i++) {
-				if (val != nums[i]) {
-					newArr[pos] = nums[i];
-					pos++;
-				}
+		for (int i = 0; i < nums.length; i++) {
+			if (val != nums[i]) {
+				nums[count] = nums[i];
+				count = count + 1;
 			}
-            System.arraycopy(newArr, 0, nums, 0, newArr.length);
-		
+		}
+
 		return count;
 	}
 }
