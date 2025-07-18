@@ -1,5 +1,8 @@
 
-#
+# Pascal's Triangle & Pascal's Triangle II
+
+[Problem I Link](https://leetcode.com/problems/pascals-triangle/description/)\
+[Problem II Link](https://leetcode.com/problems/pascals-triangle-ii/description/)
 
 Given an integer numRows, return the first numRows of Pascal's triangle.
 
@@ -51,4 +54,7 @@ List<List<Integer>> pascalsTriangle(int numRows) {
 }
 ```
 
-That's it.
+### Second Problem
+
+Since, number of rows is not given, we can get that by adding 1 to row index. Because we know that array index starts at zero.\
+And we simply return `matrix[rownIndex]`. That's it.
