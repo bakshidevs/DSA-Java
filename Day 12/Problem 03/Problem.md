@@ -27,7 +27,9 @@ nums[i] is either 0, 1, or 2.
 
 ## Solution Approach
 
-There are two approaches, one is counting sort and other is Dutch National Flag Algorithm.
+There are different approaches, one is counting sort, other is Dutch National Flag Algorithm and we can also use some sorting algorithms like bubble sort with time complexity of `O(n^2)` or merge sort with time complexity of `O(nlogn)`.
+
+Here we will see first two approaches.
 
 ### Approach 1 - Counting Sort
 
@@ -67,4 +69,43 @@ void sortColors(int[] nums) {
 
 ### Approach 2 - Dutch National Flag Algorithm (1-Pass Alorithm)
 
-1-Pass means we can access the array only once.
+1-Pass means we can access the array only once. In DNF Algorithm (Dutch National Flag Algorithm) array is divided into four parts with three pointers, low, mid and high. From index 0 to low - 1 all elements are 0s, from low to mid - 1 all elements are 1s and from mid to high - 1 all elements unsorted and from high to nums.length - 1 all elements are 2s.
+
+Let's assume we have an array `nums=[2,0,2,1,1,0]`. Since this is unsorted it fall in the middle (from mid to high - 1). We sort this by swapping the array elements. If the element is 0, we swap at the starting index of 1, which is low. If the element is 2, we swap at the start of 2s, which is high.
+
+Algorithm:
+
+1. Initialize low = 0, mid = 0, high = nums.length - 1.
+2. Run a loop till mid <= high. (Because when mid > high, we are done and sorting space become zero. There are no elements left to sort.)
+3. If nums[mid] is 0, swap it with nums[low] and increment both low and mid. (Because we are swapping, end index of zero and start index of unsorted changing.)
+4. If nums[mid] is 1, increment mid. (We don't need to swap here, because once the array is sorted the 1s are supposed in the middle).
+5. If nums[mid] is 2, swap it with nums[high] and decrement high. (Because we are moving from the end to middle, we need high to be decreasing. To both the pointer meet, start have to move forward and end has to move backward.)
+
+```java
+void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+}
+void dutchNationalFlagAlgorithm(int[] arr) {
+        int low = 0;
+        int mid = 0;
+        int high = arr.length - 1;
+
+        while (mid <= high) {
+                // 
+                if (arr[mid] == 0) {
+                        swap(arr, low, mid);
+                        low++;
+                        mid++;
+                } else if (arr[mid] == 1) {
+                        mid++;
+                } else {
+                        swap(arr, mid, high);
+                        high--;
+                }
+        }
+}
+```
+
+That's it. That's the Dutch National Flag Algorithm.
