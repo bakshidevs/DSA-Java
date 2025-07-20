@@ -14,16 +14,18 @@ public class DutchNationalFlagAlgorithm {
                 int high = arr.length - 1;
 
                 while (mid <= high) {
-                        if (arr[mid] == 0) {
-                                swap(arr, low, mid);
-                                low++;
-                                mid++;
-                        } else if (arr[mid] == 1) {
-                                mid++;
-                        } else {
-                                swap(arr, mid, high);
-                                high--;
+                    switch (arr[mid]) {
+                        case 0 -> {
+                            swap(arr, low, mid);
+                            low++;
+                            mid++;
                         }
+                        case 1 -> mid++;
+                        default -> {
+                            swap(arr, mid, high);
+                            high--;
+                        }
+                    }
                 }
         }
 
